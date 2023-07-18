@@ -171,9 +171,9 @@ Route::prefix('produtos')
         Route::post('/tamanho/store/{id_produto}','storeTamanho')
             ->name('produto.storeTamanho');
         Route::post('/tamanho/update/{id}', 'updateTamanho')
-            ->nome('updateTamanho');
+            ->name('updateTamanho');
         Route::post('/tamanho/destroy', 'destroyTamnho')
-            ->nome('produto.destroyTamanho');
+            ->name('produto.destroyTamanho');
     });
 
 /*

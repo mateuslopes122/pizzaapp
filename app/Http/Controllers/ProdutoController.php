@@ -21,7 +21,7 @@ class ProdutoController extends Controller
     {
         $produtos = Produto::orderby('nome');
 
-        return view('produtos.index')
+        return view('produto.index')
             ->with(compact('produtos'));
     }
 
