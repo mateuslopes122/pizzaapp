@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
 ==================================================
 */
 Route::prefix('cargos')
-    ->controller(CargosController::class)
+    ->controller(CargoController::class)
     ->group(function () {
         Route::get('/', 'index')
             ->name('cargos.index');
@@ -59,7 +59,7 @@ Route::prefix('cargos')
             ->name('cargo.store');
         Route::post('/update', 'update')
             ->name('cargo.update');
-        Route::post('/destroy', 'destroy')
+        Route::post('/destroy/{id}', 'destroy')
             ->name('cargo.destroy');
     });
 
@@ -156,12 +156,24 @@ Route::prefix('produtos')
         Route::get('/edit/{id}', 'edit')
             ->name('produtos.edit');
 
+        Route::get('/tamanho/{id_produto}','createTamanho')
+        ->name('produto.createTamanho');
+        Route::get('/tamanho/editar/{id}','editTamanho')
+        ->name('produto.editTamanho');
+
         Route::post('/store', 'store')
             ->name('produtos.store');
         Route::post('/update', 'update')
             ->name('produtos.update');
         Route::post('/destroy', 'destroy')
             ->name('produtos.destroy');
+
+        Route::post('/tamanho/store/{id_produto}','storeTamanho')
+            ->name('produto.storeTamanho');
+        Route::post('/tamanho/update/{id}', 'updateTamanho')
+            ->nome('updateTamanho');
+        Route::post('/tamanho/destroy', 'destroyTamnho')
+            ->nome('produto.destroyTamanho');
     });
 
 /*
