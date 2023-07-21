@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\{
     Produto,
-    Tamanho};
+    Tamanho
+};
 
 class ProdutoTamanho extends Model
 {

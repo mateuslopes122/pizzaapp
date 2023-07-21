@@ -10,6 +10,7 @@ use App\Models\{
     Produto,
     ProdutoTamanho,
     TipoProduto,
+    Tamanho
 };
 
 class ProdutoController extends Controller
@@ -56,7 +57,8 @@ class ProdutoController extends Controller
     public function show(int $id)
     {
         $produto = Produto::find($id);
-        $tamanhos = Tamanho::Class;
+        $tamanhos = Tamanho::class;
+        //dd($tamanhos);
 
         return view('produto.show')
             ->with(compact('produto', 'tamanhos'));
@@ -114,7 +116,8 @@ class ProdutoController extends Controller
 
         $produtoTamanho = null;
         $produto = Produto::find($id_produto);
-        $tamanhos = ProdutoTamanho::class;
+        $tamanhos = Tamanho::class;
+
 
         return view('produto.formTamanho')
             ->with(compact(
@@ -127,7 +130,7 @@ class ProdutoController extends Controller
     public function storeTamanho(Request $request, int $id_produto)
     {
 
-        $produtoTamnho = ProdutoTamanho::create([
+        $produtoTamanho = ProdutoTamanho::create([
             'id_produto'  => $id_produto,
             'id_tamanho'  => $request->id_tamanho,
             'preco'       => $request->preco,
@@ -136,7 +139,7 @@ class ProdutoController extends Controller
         ]);
 
         return redirect()
-            ->route('produto.show', ['id' => $id_produto])
+            ->route('produtos.show', ['id' => $id_produto])
             ->with('success', 'Tamanho cadastrado com sucesso');
     }
 

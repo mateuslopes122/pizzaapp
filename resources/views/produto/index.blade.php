@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('content')
     <h1>Produtos</h1>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th class="col-2">Ações</th>

@@ -1,28 +1,63 @@
 @extends('layouts.base')
 @section('content')
-<h1> Cargo:{{$cargo->cargo}}</h1>
-<h2> Relação de Usuários com esse cargo</h2>
+    {{-- menu --}}
+    @include('produto.partials.menu')
+    {{-- /menu --}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Ações</th>
-            <th>Nome</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <a href="#">Editar</a>
-                <a href="#">Ver</a>
-            </td>
-            <td>
-                ---
-            </td>
-        </tr>
-    </tbody>
-</table>
-@section('scripts')
+    <h1> Produto: {{ $produto->nome }}</h1>
+    <h2>Tipo: {{ $produto->tipo->tipo }}</h2>
+    <p>Descrição: {!! nl2br($produto->descricao) !!}</p>
+
+    @if ($produto->observacoes)
+        <p class="alert alert-info">
+            {!! nl12br($produto->observacoes) !!}
+        </p>
+    @endif
+
+    <table class="table table-striped">
+        <h6>
+            <a class="btn btn-primary"
+                href="{{ route('produto.createTamanho', ['id_produto' => $produto->id_produto]) }}">
+                Adicionar Novo Tamanho
+            </a>
+        </h6>
+
+        <thead>
+            <tr>
+                <th class="col-2">Ações</th>
+                <th>Tamanho</th>
+                <th>Preço</th>
+                <th>Obs.:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($produto->tamanhos()->get() as $item)
+                <tr>
+                    <td>
+                        <a class="btn btn-primary" href="#">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
+                    <td>
+                        {!! $item->tamanho->tamanho !!}
+                    </td>
+                    <td>
+                        {{ $item->preco }}
+                    </td>
+                    <td>
+                        {!! nl2br($item->observacoes) !!}
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4">
+                        Nenhum tamanho definido para este produto.
+                    </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 @endsection
 
+@section('scripts')
 @endsection

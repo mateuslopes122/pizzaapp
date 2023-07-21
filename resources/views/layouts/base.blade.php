@@ -19,10 +19,11 @@
 <body>
     <div class="container">
         @yield('content')
-    </div>
-        <footer class="container-fluid my-3 fixed">
+
+        <footer class="container-fluid my-3">
             &copy; Todos os direitos reservados - Turma 94
         </footer>
+    </div>
 </body>
     @yield('scripts')
 </html>
